@@ -1,4 +1,40 @@
 package com.fastcampus.issueservice.domain
 
-class Issue {
-}
+import com.fastcampus.issueservice.domain.enums.IssuePriority
+import com.fastcampus.issueservice.domain.enums.IssueStatus
+import com.fastcampus.issueservice.domain.enums.IssueType
+import com.fastcampus.issueservice.model.IssueRequest
+import javax.persistence.*
+
+@Entity
+@Table
+class Issue (
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    val id: Long? = null,
+
+    @Column
+    var userId: Long,
+
+    @OneToMany
+    val comments: MutableList<Comment> = mutableListOf(),
+
+    @Column
+    var summary: String,
+
+    @Column
+    var description: String,
+
+    @Column
+    @Enumerated(EnumType.STRING)
+    var type: IssueType,
+
+    @Column
+    @Enumerated(EnumType.STRING)
+    var priority: IssuePriority,
+
+    @Column
+    @Enumerated(EnumType.STRING)
+    var status: IssueStatus,
+
+) : BaseEntity()

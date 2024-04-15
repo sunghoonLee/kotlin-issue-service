@@ -1,4 +1,6 @@
 package com.fastcampus.issueservice.exception
 
-class ErrorResponse {
-}
+data class ErrorResponse (
+    val code: Int,
+    val message: String,
+)

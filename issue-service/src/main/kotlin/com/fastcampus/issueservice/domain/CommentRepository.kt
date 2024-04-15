@@ -1,4 +1,8 @@
 package com.fastcampus.issueservice.domain
 
-interface CommentRepository {
+import org.springframework.data.jpa.repository.JpaRepository
+
+interface CommentRepository : JpaRepository<Comment, Long> {
+    fun findByIdAndUserId(id: Long, userId: Long) : Comment?
+    fun deleteByIdAndUserId(id: Long, userId: Long)
 }
